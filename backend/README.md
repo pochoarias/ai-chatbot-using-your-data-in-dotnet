@@ -16,7 +16,7 @@ You can create an API key for OpenAI on [platform.openai.com/api-keys](https://p
 
 Pinecone is a cloud-based vector database service designed for fast and scalable similarity search.  Sign up for the [Starter](https://www.pinecone.io/pricing/) plan (free at time of writing) and create an API key using this guide [https://docs.pinecone.io/guides/projects/manage-api-keys](https://docs.pinecone.io/guides/projects/manage-api-keys).
 
-This API key will be placed into an environment variable called `OPENAI_API_KEY` in your [appsettings.json](./appsettings.json)
+This API key will be placed into an environment variable called `PINECONE_API_KEY` in your [appsettings.json](./appsettings.json)
 
 ### Environment Variables
 
@@ -34,9 +34,8 @@ Your final [appsettings.json](./appsettings.json) should look like this:
 
 ### Wikipedia Client
 
-Be good netizen and put your email address in here when calling the Wikipedia api.
+Be good netizen and put your email address into [WikipediaClient.cs](./Services/WikipediaClient.cs#L18) when calling the Wikipedia api.
 
 ```csharp
-        WikipediaHttpClient.DefaultRequestHeaders.UserAgent.Add(
-            new ProductInfoHeaderValue("(contact:you@example.com)"));
+WikipediaHttpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("(contact:you@example.com)"));
 ```
