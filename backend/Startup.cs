@@ -30,9 +30,9 @@ static class Startup
                 apiKey: openAiKey
             ).AsIEmbeddingGenerator());
 
+        //builder.Services.AddSingleton<IndexClient>(s => new PineconeClient(pineconeKey).Index("wikipedia-landmarks"));
         builder.Services.AddSingleton<IndexClient>(s => new PineconeClient(pineconeKey).Index("landmark-chunks"));
 
-        builder.Services.AddSingleton<DocumentChunkStore>(s => new DocumentChunkStore());
 
         builder.Services.AddSingleton<VectorSearchService>();
 
@@ -62,10 +62,13 @@ static class Startup
             Tools = FunctionRegistry.GetTools(sp).ToList(),
         });
 
+        builder.Services.AddSingleton<DocumentStore>();
+        builder.Services.AddSingleton<DocumentChunkStore>();
         builder.Services.AddSingleton<WikipediaClient>();
         builder.Services.AddSingleton<IndexBuilder>();
         builder.Services.AddSingleton<RagQuestionService>();
         builder.Services.AddSingleton<ArticleSplitter>();
         builder.Services.AddSingleton<PromptService>();
+        builder.Services.AddSingleton<VectorSearchServiceWithHyde>();
     }
 }
